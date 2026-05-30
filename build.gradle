@@ -1,0 +1,60 @@
+plugins {
+    id 'java'
+    id 'org.springframework.boot' version '4.1.0'
+    id 'io.spring.dependency-management' version '1.1.7'
+}
+
+group = 'alp.semester2'
+version = '0.0.1-SNAPSHOT'
+
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(25)
+    }
+}
+
+configurations {
+    compileOnly {
+        extendsFrom annotationProcessor
+    }
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    // Spring Web (REST Controllers)
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+
+    // Spring Data JPA (ORM ke MySQL)
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+
+    // Thymeleaf (template engine — untuk teman kamu nanti)
+    implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
+
+    // Spring Security (login / JWT)
+    implementation 'org.springframework.boot:spring-boot-starter-security'
+    implementation 'org.thymeleaf.extras:thymeleaf-extras-springsecurity6'
+
+    // MySQL Driver
+    runtimeOnly 'com.mysql:mysql-connector-j'
+
+    // Lombok (mengurangi boilerplate getter/setter)
+    compileOnly 'org.projectlombok:lombok'
+    annotationProcessor 'org.projectlombok:lombok'
+
+    // Jackson (JSON)
+    implementation 'com.fasterxml.jackson.core:jackson-databind'
+
+    // Validation
+    implementation 'org.springframework.boot:spring-boot-starter-validation'
+
+    // Test
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    testImplementation 'org.springframework.security:spring-security-test'
+}
+
+tasks.named('test') {
+    useJUnitPlatform()
+}
